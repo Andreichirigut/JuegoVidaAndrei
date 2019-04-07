@@ -38,14 +38,12 @@ public class Generacion {
     public void setMatrizCelula(Celula[][] matrizCelula) {
         this.matrizCelula = matrizCelula;
     }
-    
-    
-    // i y j deben ser maximo el numero que se cree la matriz sino dará error
 
-    public Celula getCelula( int i, int j ){
+    // i y j deben ser maximo el numero que se cree la matriz sino dará error
+    public Celula getCelula(int i, int j) {
         return matrizCelula[i][j];
     }
-    
+
     public void ponerCelula(int i, int j, Celula tmp) {
         matrizCelula[i][j] = tmp;
     }
