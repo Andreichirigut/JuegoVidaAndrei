@@ -13,13 +13,12 @@ import javax.swing.JButton;
  * @author gabriel
  */
 public class Celula extends JButton {
-    
+
     private boolean estado;
-    
-    
-    public Celula(){
+
+    public Celula() {
         super();
-        this.estado=false;
+        this.estado = false;
         this.setBackground(Color.black);//Ponemos el color del botón negro
     }
 
@@ -27,16 +26,14 @@ public class Celula extends JButton {
         return estado;
     }
 
-    public void matarCelula(){
-        this.estado=false;
+    public void matarCelula() {
+        this.estado = false;
         this.setBackground(Color.black);//Ponemos el color del botón negro
     }
-    
-    public void resucitarCelula(){
-        this.estado=true;
+
+    public void resucitarCelula() {
+        this.estado = true;
         this.setBackground(Color.white);
     }
-    
-    
-    
+
 }
