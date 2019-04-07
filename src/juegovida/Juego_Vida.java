@@ -14,12 +14,10 @@ import javax.swing.JOptionPane;
  */
 public class Juego_Vida extends javax.swing.JFrame {
 
- 
     private int numeroCelulas; //Representa el número de celulas en x e y
     private Generacion uno;
     private Generacion dos;
-    
-    
+
     public Juego_Vida() {
         initComponents();
     }
@@ -43,6 +41,7 @@ public class Juego_Vida extends javax.swing.JFrame {
         panelDerecho = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         panelSuperior.setBackground(new java.awt.Color(41, 232, 94));
 
@@ -99,20 +98,20 @@ public class Juego_Vida extends javax.swing.JFrame {
                 .addContainerGap(59, Short.MAX_VALUE))
         );
 
-        panelIzquierdo.setBackground(new java.awt.Color(44, 219, 219));
+        panelIzquierdo.setBackground(new java.awt.Color(255, 255, 0));
 
         javax.swing.GroupLayout panelIzquierdoLayout = new javax.swing.GroupLayout(panelIzquierdo);
         panelIzquierdo.setLayout(panelIzquierdoLayout);
         panelIzquierdoLayout.setHorizontalGroup(
             panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 336, Short.MAX_VALUE)
+            .addGap(0, 328, Short.MAX_VALUE)
         );
         panelIzquierdoLayout.setVerticalGroup(
             panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 349, Short.MAX_VALUE)
         );
 
-        panelDerecho.setBackground(new java.awt.Color(87, 116, 213));
+        panelDerecho.setBackground(new java.awt.Color(0, 255, 255));
 
         javax.swing.GroupLayout panelDerechoLayout = new javax.swing.GroupLayout(panelDerecho);
         panelDerecho.setLayout(panelDerechoLayout);
@@ -131,13 +130,13 @@ public class Juego_Vida extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(panelIzquierdo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelDerecho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(panelSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(panelSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,74 +154,73 @@ public class Juego_Vida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     //Método paara borrar lo que puedan tener los paneles de celulas
-    public void resetPaneles(){
+    public void resetPaneles() {
         panelDerecho.removeAll();
         panelIzquierdo.removeAll();
         panelDerecho.repaint();
         panelIzquierdo.repaint();
     }
-    
-    
-    
+
+
     private void botonValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonValidarActionPerformed
         if (validarNumeroCelulas()) {
-             //Borro lo paneles
+            //Borro lo paneles
             this.resetPaneles();
-            
+
             // Creo la generación
             uno = new Generacion(numeroCelulas);
-            
+
             //Establezco el layout del panel
             panelIzquierdo.setLayout(new GridLayout(numeroCelulas, numeroCelulas));
-            
+
             for (int i = 0; i < numeroCelulas; i++) {
                 for (int j = 0; j < numeroCelulas; j++) {
-                    Celula tmp= new Celula();
-                    tmp.setToolTipText(Integer.toString(i)+ "," + Integer.toString(j));
-                    tmp.addActionListener(e->click(tmp));
-                    
+                    Celula tmp = new Celula();
+                    tmp.setToolTipText(Integer.toString(i) + "," + Integer.toString(j));
+                    tmp.addActionListener(e -> click(tmp));
+
                     uno.ponerCelula(i, j, tmp);
                     panelIzquierdo.add(uno.getCelula(i, j));
                 }
             }
-            
+
             panelIzquierdo.validate();
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(this, "Número incorrecto o mal formateado");
-           
+
         }
     }//GEN-LAST:event_botonValidarActionPerformed
 
-    
-    public void click(Celula tmp){
-        if(tmp.isEstado()){
+    public void click(Celula tmp) {
+        if (tmp.isEstado()) {
             tmp.matarCelula();
-        }else{
+        } else {
             tmp.resucitarCelula();
         }
     }
+
     //Miramos si lo que mete en la caja de texto es o no un número
-    public boolean esNumero(String aux){
+    public boolean esNumero(String aux) {
         try {
-            
+
             Integer.parseInt(aux);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
         return true;
     }
-    
-    public boolean validarNumeroCelulas(){
+
+    public boolean validarNumeroCelulas() {
         if (esNumero(labelNumCel.getText())) {
-            numeroCelulas= Integer.parseInt(labelNumCel.getText());
-            if (numeroCelulas >=5 && numeroCelulas<=70){
+            numeroCelulas = Integer.parseInt(labelNumCel.getText());
+            if (numeroCelulas >= 5 && numeroCelulas <= 70) {
                 return true;
-            }  
+            }
         }
         return false;
     }
-    
+
     //Añadimos  un action 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         this.dispose();
