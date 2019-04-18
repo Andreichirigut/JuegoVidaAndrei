@@ -22,6 +22,10 @@ public class Celula extends JButton {
         this.setBackground(Color.black);//Ponemos el color del botón negro
     }
 
+    public Celula(boolean e) {
+        this.estado = estado;
+    }
+
     public boolean isEstado() {
         return estado;
     }
@@ -36,4 +40,13 @@ public class Celula extends JButton {
         this.setBackground(Color.white);
     }
 
+    public static Celula generarCelula(int numero) {
+        switch (numero) {
+            case 1:
+                return new Celula(true);
+            case 2:
+                return new Celula(false);
+        }
+        return new Celula();
+    }
 }
