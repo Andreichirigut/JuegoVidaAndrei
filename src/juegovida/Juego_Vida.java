@@ -35,8 +35,8 @@ public class Juego_Vida extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         labelNumCel = new javax.swing.JTextField();
         botonValidar = new javax.swing.JButton();
-        labelSalida = new javax.swing.JLabel();
         botonSalir = new javax.swing.JButton();
+        genaerarCelulasAleatorias = new javax.swing.JButton();
         panelIzquierdo = new javax.swing.JPanel();
         panelDerecho = new javax.swing.JPanel();
 
@@ -57,12 +57,17 @@ public class Juego_Vida extends javax.swing.JFrame {
             }
         });
 
-        labelSalida.setText("Ejemplo");
-
         botonSalir.setText("Salir");
         botonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonSalirActionPerformed(evt);
+            }
+        });
+
+        genaerarCelulasAleatorias.setText("Aleatorio");
+        genaerarCelulasAleatorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genaerarCelulasAleatoriasActionPerformed(evt);
             }
         });
 
@@ -72,30 +77,33 @@ public class Juego_Vida extends javax.swing.JFrame {
             panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSuperiorLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelSalida)
-                    .addGroup(panelSuperiorLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(4, 4, 4)
-                        .addComponent(labelNumCel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonValidar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonSalir)))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addComponent(jLabel1)
+                .addGap(4, 4, 4)
+                .addComponent(labelNumCel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botonValidar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(genaerarCelulasAleatorias))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonSalir)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         panelSuperiorLayout.setVerticalGroup(
             panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSuperiorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(labelNumCel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonValidar)
-                    .addComponent(botonSalir))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelSalida)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelSuperiorLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(labelNumCel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonValidar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(genaerarCelulasAleatorias))
+                    .addGroup(panelSuperiorLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(botonSalir)))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         panelIzquierdo.setBackground(new java.awt.Color(255, 255, 0));
@@ -226,6 +234,10 @@ public class Juego_Vida extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_botonSalirActionPerformed
 
+    private void genaerarCelulasAleatoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genaerarCelulasAleatoriasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_genaerarCelulasAleatoriasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -264,9 +276,9 @@ public class Juego_Vida extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonSalir;
     private javax.swing.JButton botonValidar;
+    private javax.swing.JButton genaerarCelulasAleatorias;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField labelNumCel;
-    private javax.swing.JLabel labelSalida;
     private javax.swing.JPanel panelDerecho;
     private javax.swing.JPanel panelIzquierdo;
     private javax.swing.JPanel panelSuperior;
