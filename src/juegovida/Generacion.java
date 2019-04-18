@@ -5,6 +5,8 @@
  */
 package juegovida;
 
+import java.util.Random;
+
 /**
  *
  * @author gabriel
@@ -46,6 +48,19 @@ public class Generacion {
 
     public void ponerCelula(int i, int j, Celula tmp) {
         matrizCelula[i][j] = tmp;
+    }
+
+    public static Celula[][] generarCelulaAleatoria(int tamaño) {
+        Celula[][] tmp = new Celula[tamaño][tamaño];
+        Random aleo = new Random();
+        int numero= aleo.nextInt(1-0+1)+0;
+        for (int i = 0; i < tamaño; i++) {
+            for (int j = 0; j < tamaño; j++) {
+                tmp[i][j] = Celula.generarCelula(numero);
+
+            }
+        }
+        return tmp;
     }
 
 }
