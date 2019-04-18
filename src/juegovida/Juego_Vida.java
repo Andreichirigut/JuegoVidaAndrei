@@ -235,7 +235,34 @@ public class Juego_Vida extends javax.swing.JFrame {
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void genaerarCelulasAleatoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genaerarCelulasAleatoriasActionPerformed
-        // TODO add your handling code here:
+        if (validarNumeroCelulas()) {
+            //Borro lo paneles
+            this.resetPaneles();
+
+            // Creo la generación
+            uno = new Generacion(numeroCelulas);
+
+            //Establezco el layout del panel
+            panelIzquierdo.setLayout(new GridLayout(numeroCelulas, numeroCelulas));
+
+            for (int i = 0; i < numeroCelulas; i++) {
+                for (int j = 0; j < numeroCelulas; j++) {
+                    int estado = Generacion.generarEstado();
+                    Celula tmp = Celula.generarCelula(estado);
+                    tmp.setToolTipText(Integer.toString(i) + "," + Integer.toString(j));
+                    tmp.addActionListener(e -> click(tmp));
+
+                    uno.ponerCelula(i, j, tmp);
+                    panelIzquierdo.add(uno.getCelula(i, j));
+                }
+            }
+
+            panelIzquierdo.validate();
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Número incorrecto o mal formateado");
+
+        }
     }//GEN-LAST:event_genaerarCelulasAleatoriasActionPerformed
 
     /**
