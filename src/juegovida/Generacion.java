@@ -50,13 +50,17 @@ public class Generacion {
         matrizCelula[i][j] = tmp;
     }
 
+    public static int generarEstado() {
+        Random aleo = new Random();
+        int numero = aleo.nextInt(1 - 0 + 1) + 0;
+        return numero;
+    }
+
     public static Celula[][] generarCelulaAleatoria(int tamaño) {
         Celula[][] tmp = new Celula[tamaño][tamaño];
-        Random aleo = new Random();
-        int numero= aleo.nextInt(1-0+1)+0;
         for (int i = 0; i < tamaño; i++) {
             for (int j = 0; j < tamaño; j++) {
-                tmp[i][j] = Celula.generarCelula(numero);
+                tmp[i][j] = Celula.generarCelula(generarEstado());
 
             }
         }
