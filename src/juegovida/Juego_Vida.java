@@ -37,6 +37,7 @@ public class Juego_Vida extends javax.swing.JFrame {
         botonValidar = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
         genaerarCelulasAleatorias = new javax.swing.JButton();
+        cambioInteraccion = new javax.swing.JButton();
         panelIzquierdo = new javax.swing.JPanel();
         panelDerecho = new javax.swing.JPanel();
 
@@ -71,21 +72,36 @@ public class Juego_Vida extends javax.swing.JFrame {
             }
         });
 
+        cambioInteraccion.setText("Siguiente interaccion");
+        cambioInteraccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cambioInteraccionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelSuperiorLayout = new javax.swing.GroupLayout(panelSuperior);
         panelSuperior.setLayout(panelSuperiorLayout);
         panelSuperiorLayout.setHorizontalGroup(
             panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSuperiorLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1)
-                .addGap(4, 4, 4)
-                .addComponent(labelNumCel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botonValidar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(genaerarCelulasAleatorias))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botonSalir)
+                .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelSuperiorLayout.createSequentialGroup()
+                        .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelSuperiorLayout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(jLabel1)
+                                .addGap(4, 4, 4)
+                                .addComponent(labelNumCel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(botonValidar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelSuperiorLayout.createSequentialGroup()
+                                .addGap(89, 89, 89)
+                                .addComponent(genaerarCelulasAleatorias)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonSalir))
+                    .addGroup(panelSuperiorLayout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(cambioInteraccion, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
         panelSuperiorLayout.setVerticalGroup(
@@ -103,7 +119,9 @@ public class Juego_Vida extends javax.swing.JFrame {
                     .addGroup(panelSuperiorLayout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(botonSalir)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cambioInteraccion)
+                .addGap(27, 27, 27))
         );
 
         panelIzquierdo.setBackground(new java.awt.Color(255, 255, 0));
@@ -155,7 +173,7 @@ public class Juego_Vida extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelIzquierdo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelDerecho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         pack();
@@ -265,6 +283,37 @@ public class Juego_Vida extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_genaerarCelulasAleatoriasActionPerformed
 
+    private void cambioInteraccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambioInteraccionActionPerformed
+        if (validarNumeroCelulas()) {
+            //Borro lo paneles
+            this.resetPaneles();
+
+            // Creo la generación
+            uno = new Generacion(numeroCelulas);
+
+            //Establezco el layout del panel
+            panelDerecho.setLayout(new GridLayout(numeroCelulas, numeroCelulas));
+
+            for (int i = 0; i < numeroCelulas; i++) {
+                for (int j = 0; j < numeroCelulas; j++) {
+                    int estado = Generacion.generarEstado();
+                    Celula tmp = Celula.generarCelula(estado);
+                    tmp.setToolTipText(Integer.toString(i) + "," + Integer.toString(j));
+                    tmp.addActionListener(e -> click(tmp));
+
+                    uno.ponerCelula(i, j, tmp);
+                    panelDerecho.add(uno.getCelula(i, j));
+                }
+            }
+
+            panelDerecho.validate();
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Número incorrecto o mal formateado");
+
+        }
+    }//GEN-LAST:event_cambioInteraccionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -303,6 +352,7 @@ public class Juego_Vida extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonSalir;
     private javax.swing.JButton botonValidar;
+    private javax.swing.JButton cambioInteraccion;
     private javax.swing.JButton genaerarCelulasAleatorias;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField labelNumCel;
